@@ -70,9 +70,9 @@ public class UserController {
             String EndDate = selectForex.getEndDate().replaceAll("/", "");
 
             logger.info(selectForex.getCurrency() +"~"+ StartDate+"~"+EndDate);
-            //Forex forexList=forexMapper.getSelectForex(StartDate,EndDate,selectForex.getCurrency());
-            List<Forex> forexList = objectMapper.readValue(new File(System.getProperty("user.dir") + "/src/JsonFile/DailyForeignExchangeRates.json"), new TypeReference<List<Forex>>() {});
-            for (Forex forex : forexList) {
+            Forex forex=forexMapper.getSelectForex(StartDate,EndDate,selectForex.getCurrency());
+           // List<Forex> forexList = objectMapper.readValue(new File(System.getProperty("user.dir") + "/src/JsonFile/DailyForeignExchangeRates.json"), new TypeReference<List<Forex>>() {});
+           // for (Forex forex : forexList) {
                 if(forex.getUsd_twd()== null){
                     CustomError errors = new CustomError();
                     errors.setCode("E001");
@@ -90,7 +90,7 @@ public class UserController {
                     success.setCurrency(currency);
                     jsonString = objectMapper.writeValueAsString(success);
                 }
-            }
+            //}
 
 
         } catch (IOException e) {
