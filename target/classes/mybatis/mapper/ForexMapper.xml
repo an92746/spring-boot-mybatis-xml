@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neo.mapper.ForexMapper" >
+    <resultMap id="BaseResultMap" type="com.neo.model.Forex" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="date" property="date" jdbcType="VARCHAR" />
+        <result column="usd_ntd" property="usd_ntd" jdbcType="VARCHAR" />
+        <result column="rmb_ntd" property="rmb_ntd" jdbcType="VARCHAR" />
+        <result column="eur_usd" property="eur_usd" jdbcType="VARCHAR" />
+        <result column="usd_jpy" property="usd_jpy" jdbcType="VARCHAR" />
+        <result column="gbp_usd" property="gbp_usd" jdbcType="VARCHAR" />
+        <result column="aud_usd" property="aud_usd" jdbcType="VARCHAR" />
+        <result column="usd_hkd" property="usd_hkd" jdbcType="VARCHAR" />
+        <result column="usd_rmb" property="usd_rmb" jdbcType="VARCHAR" />
+        <result column="usd_zar" property="usd_zar" jdbcType="VARCHAR" />
+        <result column="nzd_usd" property="nzd_usd" jdbcType="VARCHAR" />
+        <result column="usd_twd" property="usd_twd" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, date,usd_ntd,rmb_ntd,eur_usd,usd_jpy,gbp_usd,aud_usd,usd_hkd,usd_rmb,usd_zar,nzd_usd,usd_twd
+    </sql>
+    <insert id="insertForex" parameterType="com.neo.model.Forex" >
+        INSERT INTO
+        forexTable
+        (date,usd_ntd,rmb_ntd,eur_usd,usd_jpy,gbp_usd,aud_usd,usd_hkd,usd_rmb,usd_zar,nzd_usd,usd_twd)
+        VALUES
+        (#{date},#{usd_ntd},#{rmb_ntd},#{eur_usd},#{usd_jpy},#{gbp_usd},#{aud_usd},#{usd_hkd},#{usd_rmb},#{usd_zar},#{nzd_usd},#{usd_twd})
+    </insert>
+    <select id="getSelectForex" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM  forexTable
+        WHERE 1=1
+    </select>
+
+</mapper>
